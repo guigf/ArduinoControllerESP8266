@@ -4,134 +4,42 @@
 <head>
     <meta>
     <title>ESP-01 MQTT Controller</title>
-    
+
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 
-    <style>
-        body {
-            text-align: center;
-            height: 100vh;
-            width: 100vw;
-            overflow: hidden;
-            display: block;
-        }
+    <link rel="stylesheet" href="bootstrap.min.css">
 
+    <link rel="stylesheet" href="style.css">
 
-        #btnLiga {
-            background-color: green;
-            border-color: darkgreen;
-            margin-right: 25px;
-        }
-
-        #btnDesliga {
-            background-color: red;
-            border-color: darkred;
-            margin-right: 25px;
-        }
-
-        #btnLiga:disabled {
-            background-color: white;
-            border-color: white;
-        }
-
-        #btnDesliga:disabled {
-            background-color: white;
-            border-color: white;
-        }
-
-        .title {
-            width: 100%;
-            height: 70%;
-            display: block;
-        }
-
-        .footer {
-            width: 100%;
-            height: 30%;
-            display: block;
-        }
-
-        .button-group {
-            width: 100%;
-        }
-
-        button {
-            /* width: 35%;
-            height: 100px;
-            text-align: center;
-            white-space: nowrap;
-            font-size: 35px;
-            font-weight: 400; */
-            cursor: pointer;
-            border-radius: 50px;
-        }
-
-        button:disabled {
-            cursor: not-allowed;
-        }
-    </style>
 </head>
 
 <body>
     <div class="title">
         <h1>ESP-01 MQTT Controller</h1>
     </div>
-    <div class="footer">
-        <div class="button-group">
-            <button id="btnLiga" onclick="onLigar()">Ligar</button>
-            <button id="btnDesliga" onclick="onDesligar()">Desligar</button>
+    <div class="body-container">
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+                <div class="form-inline">
+
+                    <label for="txtDeviceId">Device ID:</label>
+                    <input type="text" class="form-control" id="txtDeviceId">
+                    <button class="btn btn-primary" onclick="connectDevice()">Connect Device</button>
+                </div>
+            </div>
+            <div class="col-lg-3"></div>
         </div>
     </div>
 
-    <script>
-        // var baseServer = 'http://192.168.4.1:81';
-        var baseServer = 'https://cloud.arest.io/6fyd7fek/digital/0';
-        var _btnLiga = document.getElementById('btnLiga');
-        var _btnDesliga = document.getElementById('btnDesliga');
+    <div class="footer">
+        <div class="btn-group btn-group-lg" role="group">
+            <button type="button" class="btn btn-default disabled" disabled id="btnLiga" onclick="onLigar()">Ligar</button>
+            <button type="button" class="btn btn-default disabled" disabled id="btnDesliga" onclick="onDesligar()">Desligar</button>
+        </div>
+    </div>
 
-        _btnDesliga.disabled = true;
-        // _btnDesliga.attr("disabled", "disabled");
-        // _btnLiga.removeAttr("disabled");
-
-        function httpGet(theUrl) {
-            var xmlHttp = new XMLHttpRequest();
-            xmlHttp.open("GET", theUrl, false); // false for synchronous request
-            xmlHttp.send(null);
-            return xmlHttp.responseText;
-        }
-
-        function httpGetAsync(theUrl, callback) {
-            var xmlHttp = new XMLHttpRequest();
-            xmlHttp.onreadystatechange = function () {
-                if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-                    callback(xmlHttp.responseText);
-            }
-            xmlHttp.open("GET", theUrl, true); // true for asynchronous 
-            xmlHttp.send(null);
-        }
-
-        function onLigar() {
-            console.log('onLigar');
-            // httpGetAsync(`${baseServer}/turn_on`, function () {});
-            httpGetAsync(`${baseServer}/1`, function (response) {
-                alert(response);
-                console.log(response);
-            });
-            _btnLiga.disabled = true;
-            _btnDesliga.disabled = false;
-        };
-
-        function onDesligar() {
-            console.log('onDesligar');
-            // httpGetAsync(`${baseServer}/turn_off`, function () {});
-            httpGetAsync(`${baseServer}/0`, function (response) {
-                alert(response);
-                console.log(response);
-            });
-            _btnDesliga.disabled = true;
-            _btnLiga.disabled = false;
-        };
-    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>
