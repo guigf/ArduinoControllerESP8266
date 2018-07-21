@@ -1,0 +1,62 @@
+body {
+    text-align: center;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    display: block;
+}
+
+
+#btnLiga {
+    background-color: green;
+    border-color: black;
+}
+
+#btnDesliga {
+    background-color: red;
+    border-color: black;
+}
+
+#btnLiga:disabled {
+    /* background-color: white;
+    border-color: white; */
+}
+
+#btnDesliga:disabled {
+    /* background-color: white;
+    border-color: white; */
+}
+
+.title {
+    width: 100%;
+    height: 20%;
+    display: block;
+}
+
+.body-container {
+    width: 100%;
+    height: 50%; 
+}
+
+.footer {
+    width: 100%;
+    height: 30%;
+    display: block;
+}
+
+.btn-group {}
+
+button {
+    /* width: 35%;
+    height: 100px;
+    text-align: center;
+    white-space: nowrap;
+    font-size: 35px;
+    font-weight: 400; */
+    /* cursor: pointer;
+    border-radius: 50px; */
+}
+
+button:disabled {
+    /* cursor: not-allowed; */
+}
